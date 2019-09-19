@@ -45,13 +45,16 @@ export default function CadastroUsuarios({ history }) {
   }, [users]);
 
   function handleRedirect(userId) {
-    console.log(userId);
+    alert(userId);
     // history.push(`/Usuarios/AlterarUsuario/${user._id}`);
   }
 
   return (
     <React.Fragment>
-      <div className="col-lg-6 form-container">
+      <Row>
+
+
+      <div className="col-lg-6">
         <div className="form-header">
           <h2>Cadastro de Usuário {<i className="cui-people" />}</h2>
         </div>
@@ -91,14 +94,13 @@ export default function CadastroUsuarios({ history }) {
           </Row>
 
           <Row className="justify-content-center">
-            <Col className="col-lg-4 col-md-4 col-sm-12">
+            <Col className="col-lg-4 col-md-4 col-sm-4">
               <button type="submit">Confirmar</button>
             </Col>
           </Row>
         </form>
       </div>
       {users.length > 0 ? (
-        <Row className="row justify-content-center">
           <Col className="col-lg-6">
             <Table className="table table-striped text-nowrap ">
               <thead>
@@ -133,10 +135,10 @@ export default function CadastroUsuarios({ history }) {
               </tbody>
             </Table>
           </Col>
-        </Row>
       ) : (
         <div className="empty"></div>
       )}
+      </Row>
     </React.Fragment>
   );
 }

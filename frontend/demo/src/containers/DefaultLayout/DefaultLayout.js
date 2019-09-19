@@ -65,7 +65,7 @@ class DefaultLayout extends Component {
             <AppSidebarMinimizer />
           </AppSidebar>
           <main className="main">
-            <Container fluid style={{ padding: 10 }}>
+            <Container fluid style={{ paddingLeft: 20, paddingRight: 20, paddingTop: 30}}>
               <Switch>
                 {routes.map((route, idx) => {
                   return route.component ? (
