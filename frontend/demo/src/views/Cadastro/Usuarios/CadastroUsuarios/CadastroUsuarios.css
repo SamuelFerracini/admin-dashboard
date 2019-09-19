@@ -8,21 +8,11 @@
   text-align: center;
 }
 
-.teste {
-  padding: 20px;
-}
-
-input {
-  width: 100%;
-}
-
-
 form button {
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   outline: 0;
   background: rgb(0, 81, 131);
-  width: 100%;
   justify-content: center;
   border: 0;
   color: #ffffff;
@@ -45,8 +35,12 @@ table tr:hover{
     cursor: pointer;
 }
 
-table tr:hover td {
-  background: lightblue;
+table tr:hover th{
+  background: white;
+}
+
+table tr:hover td{
+  background: white;
 }
 
 .row{

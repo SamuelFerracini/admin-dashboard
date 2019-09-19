@@ -52,9 +52,7 @@ export default function CadastroUsuarios({ history }) {
   return (
     <React.Fragment>
       <Row>
-
-
-      <div className="col-lg-6">
+      <div className="col-lg-6" >
         <div className="form-header">
           <h2>Cadastro de Usuário {<i className="cui-people" />}</h2>
         </div>
@@ -108,8 +106,6 @@ export default function CadastroUsuarios({ history }) {
                   <th>#</th>
                   <th>Nome</th>
                   <th>Login</th>
-                  {/* <th>Password</th> */}
-                  {/* <th /> */}
                 </tr>
               </thead>
               <tbody>
@@ -122,14 +118,6 @@ export default function CadastroUsuarios({ history }) {
                     <th scope="row">{index + 1}</th>
                     <td>{user.name}</td>
                     <td>{user.username}</td>
-                    {/* <td>{user.password}</td> */}
-                    {/* <td>
-                      <a
-                        href="javascript.void(0)"
-                      >
-                        Editar
-                      </a>
-                    </td> */}
                   </tr>
                 ))}
               </tbody>
