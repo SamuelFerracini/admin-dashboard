@@ -19,7 +19,6 @@ module.exports = {
 
   async store(req, res) {
     const { name, username, password } = req.body.headers;
-    console.log(req.body.headers);
     const userExists = await User.findOne({ username });
 
     if (userExists) {
@@ -36,8 +35,11 @@ module.exports = {
       password
     });
 
+    const users = await User.find();
+
     return res.json({
-      user
+      error:false,
+      users
     });
   },
 

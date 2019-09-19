@@ -28,11 +28,11 @@ export default function CadastroUsuarios({ history }) {
       setUsername("");
       setPassword("");
       setName("");
+      setUsers(response.data.users);
       alert("Operação realizado com sucesso!");
     } catch (e) {
       setError("Ocorreu um erro");
     }
-    //    document.getElementsByClassName('form-control').value = "tetsa;.djhgh"
   }
 
   useEffect(() => {
@@ -43,13 +43,12 @@ export default function CadastroUsuarios({ history }) {
           _id
         }
       });
-      if (response.data.error) setUsers([]);
+      // if (response.data.error) setUsers([]);
       setUsers(response.data.users);
       // PubSub.publish("loading-data", false);
     }
-
     loadUsers();
-  }, [users]);
+  }, []);
 
   function handleRedirect(userId) {
     alert(userId);
@@ -77,7 +76,6 @@ export default function CadastroUsuarios({ history }) {
                   required={true}
                 />
               </Row>
-
               <Row className="justify-content-center">
                 <Input
                   label="Login"

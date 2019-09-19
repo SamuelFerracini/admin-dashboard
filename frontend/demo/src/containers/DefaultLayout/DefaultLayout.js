@@ -76,10 +76,10 @@ export default class DefaultLayout extends Component {
             <AppSidebarFooter />
             <AppSidebarMinimizer />
           </AppSidebar>
-          <main className="main">
+          <main className="main" style={{ backgroundColor: "#F5F8FD"}}> 
             <Container
               fluid
-              style={{ padding: 10, backgroundColor: "#F5F8FD" }}
+              style={{ padding: 10 }}
             >
                 <Switch>
                   {routes.map((route, idx) => {
