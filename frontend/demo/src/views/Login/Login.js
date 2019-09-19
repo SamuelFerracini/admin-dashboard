@@ -26,7 +26,7 @@ export default function Login({ history }) {
         }
       });
       console.log(response);
-      if (response.data.code == "002") {
+      if (response.data.error) {
         // setError("Usuário/Senha inválido");
         throw new Error("Usuário/Senha inválido");
       }

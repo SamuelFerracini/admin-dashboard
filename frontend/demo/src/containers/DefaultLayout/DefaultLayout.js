@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+import React, { Component, Suspense } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import * as router from "react-router-dom";
 import { Container, Nav, NavItem } from "reactstrap";
 import "./DefaultLayout.css";
-
+// import PubSub from "pubsub-js";
 import {
   AppFooter,
   AppHeader,
@@ -16,25 +16,37 @@ import {
   AppSidebarNav2 as AppSidebarNav,
   AppSidebarToggler
 } from "../../../../src";
-// sidebar nav config
-import navigation from "../../_nav.js";
-// routes config
-import routes from "../../routes.js";
 
+
+import navigation from "../../_nav.js";
+import routes from "../../routes.js";
 import logo from "../../assets/img/brand/logo.svg";
 import sygnet from "../../assets/img/brand/sygnet.svg";
 import { logout } from "../../services/Auth.js";
 
-class DefaultLayout extends Component {
+export default class DefaultLayout extends Component {
+  constructor() {
+    super();
+    this.state = {
+      loading: true
+    };
+  }
+
+  // componentDidMount() {
+  //   PubSub.subscribe("loading-data", (topico, value) => {
+  //     this.setState({ loading: value });
+  //   });
+  // }
+
   render() {
     return (
       <div className="app">
         <AppHeader fixed>
           <AppSidebarToggler className="d-lg-none" display="md" mobile />
-            <AppNavbarBrand
-              full={{ src: logo, width: 150, height: 50, alt: "Unilever" }}
-              minimized={{ src: sygnet, width: 80, height: 40, alt: "Unilever" }}
-            />
+          <AppNavbarBrand
+            full={{ src: logo, width: 150, height: 50, alt: "Unilever" }}
+            minimized={{ src: sygnet, width: 80, height: 40, alt: "Unilever" }}
+          />
           <AppSidebarToggler className="d-md-down-none" display="lg" />
           <Nav className="ml-auto" navbar>
             <NavItem className="d-md-down-none mr-4">
@@ -65,32 +77,34 @@ class DefaultLayout extends Component {
             <AppSidebarMinimizer />
           </AppSidebar>
           <main className="main">
-            <Container fluid style={{ paddingLeft: 20, paddingRight: 20, paddingTop: 30}}>
-              <Switch>
-                {routes.map((route, idx) => {
-                  return route.component ? (
-                    <Route
-                      key={idx}
-                      path={route.path}
-                      exact={true}
-                      name={route.name}
-                      render={props => <route.component {...props} />}
-                    />
-                  ) : null;
-                })}
-                <Redirect from="/" to="/Error" />
-              </Switch>
+            <Container
+              fluid
+              style={{ padding: 10, backgroundColor: "#F5F8FD" }}
+            >
+                <Switch>
+                  {routes.map((route, idx) => {
+                    return route.component ? (
+                      <Route
+                        key={idx}
+                        path={route.path}
+                        exact={true}
+                        name={route.name}
+                        render={props => <route.component {...props} />}
+                      />
+                    ) : null;
+                  })}
+                  <Redirect from="/" to="/Error" />
+                </Switch>
             </Container>
           </main>
         </div>
         <AppFooter>
           <span>
-            <a href="https://coreui.io">TSE</a> &copy; 2019
+            <a href="https://www.tseautomacaoindustrial.com/">TSE</a> &copy;
+            2019
           </span>
         </AppFooter>
       </div>
     );
   }
 }
-
-export default DefaultLayout;

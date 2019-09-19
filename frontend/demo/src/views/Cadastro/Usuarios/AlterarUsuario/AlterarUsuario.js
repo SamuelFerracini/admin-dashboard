@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./AlterarUsuario.css";
 import api from "../../../../services/api.js";
 import { Input } from "reactstrap";
+import PubSub from 'pubsub-js';
 
 export default function CadastroUsuarios({ match }) {
   var [user, setUser] = useState([]);
@@ -13,9 +14,7 @@ export default function CadastroUsuarios({ match }) {
           _id: match.params._id
         }
       });
-
     }
-    console.log(response);
 
     loadUser();
   }, []);

@@ -4,10 +4,6 @@
   font-family: "Roboto";
 }
 
-.form-header {
-  text-align: center;
-}
-
 form button {
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
@@ -21,28 +17,22 @@ form button {
   cursor: pointer;
   border-radius: 15px;
 }
+
 form button:hover {
   background: rgb(0, 106, 172);
 }
 
-
-tr {
-  border: 1px solid lightskyblue;
-  border-radius: 15px;
+table{
+  border-collapse: separate;
+  border-spacing: 0;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 
-table tr:hover{
-    cursor: pointer;
+thead{
+  background: #004177;
+  color:white;
 }
 
-table tr:hover th{
-  background: white;
-}
-
-table tr:hover td{
-  background: white;
-}
-
-.row{
-  margin-bottom: 10px;
+.table-content :hover {
+  cursor: pointer;
 }

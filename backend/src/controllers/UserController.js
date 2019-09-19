@@ -3,11 +3,13 @@ const User = require("../models/User");
 module.exports = {
   async index(req, res) {
     const { _id } = req.headers;
-    const users = await User.find({ _id: { $ne: _id } });
+    const users = await User.find();
+    // const users = await User.find({ _id: { $ne: _id } });
     if (users.length == 0) {
       return res.json({
-        error: "Theres no users",
-        code: "003"
+        error: true,
+        code: "03",
+        description: "Theres no users"
       });
     }
     return res.json({
@@ -22,8 +24,9 @@ module.exports = {
 
     if (userExists) {
       return res.json({
-        error: "User alredy exists",
-        code: "001"
+        error: true,
+        code: "03",
+        description: "User alredy exists"
       });
     }
 

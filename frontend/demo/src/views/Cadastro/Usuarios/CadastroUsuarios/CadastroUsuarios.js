@@ -3,7 +3,9 @@ import "./CadastroUsuarios.css";
 import api from "../../../../services/api.js";
 import { Col, Row, Table } from "reactstrap";
 import Input from "../../../../components/Input.js";
+import Button from "../../../../components/Button";
 import { username } from "../../../../services/Auth";
+
 
 export default function CadastroUsuarios({ history }) {
   const [name, setName] = useState("");
@@ -23,10 +25,13 @@ export default function CadastroUsuarios({ history }) {
           password
         }
       });
+      setUsername("");
+      setPassword("");
+      setName("");
+      alert("Operação realizado com sucesso!");
     } catch (e) {
       setError("Ocorreu um erro");
     }
-    alert("Operação realizado com sucesso!");
     //    document.getElementsByClassName('form-control').value = "tetsa;.djhgh"
   }
 
@@ -38,7 +43,9 @@ export default function CadastroUsuarios({ history }) {
           _id
         }
       });
+      if (response.data.error) setUsers([]);
       setUsers(response.data.users);
+      // PubSub.publish("loading-data", false);
     }
 
     loadUsers();
@@ -52,80 +59,79 @@ export default function CadastroUsuarios({ history }) {
   return (
     <React.Fragment>
       <Row>
-      <div className="col-lg-6" >
-        <div className="form-header">
-          <h2>Cadastro de Usuário {<i className="cui-people" />}</h2>
-        </div>
-        <form onSubmit={handleSubmit}>
-          <p style={{ color: "red", textAlign: "center" }}>{error}</p>
-          <Row className="justify-content-center">
-            <Input
-              label="Nome"
-              id="nome"
-              type="text"
-              name="nome"
-              value={name}
-              onChange={e => setName(e.target.value)}
-              required={true}
-            />
-          </Row>
+        <Col className="col-lg-6">
+          <div className="form" style={{ background: "white", padding: 10 }}>
+            <div className="form-header">
+              <h3>Cadastro de Usuário {<i className="cui-people" />}</h3>
+            </div>
+            <form onSubmit={handleSubmit}>
+              <p style={{ color: "red", textAlign: "center" }}>{error}</p>
+              <Row className="justify-content-center">
+                <Input
+                  label="Nome"
+                  id="nome"
+                  type="text"
+                  name="nome"
+                  value={name}
+                  onChange={e => setName(e.target.value)}
+                  required={true}
+                />
+              </Row>
 
-          <Row className="justify-content-center">
-            <Input
-              label="Login"
-              id="login"
-              type="text"
-              name="login"
-              value={username}
-              onChange={e => setUsername(e.target.value)}
-            />
-          </Row>
-          <Row className="justify-content-center">
-            <Input
-              label="Senha"
-              id="password"
-              type="password"
-              name="password"
-              value={password}
-              onChange={e => setPassword(e.target.value)}
-            />
-          </Row>
-
-          <Row className="justify-content-center">
-            <Col className="col-lg-4 col-md-4 col-sm-4">
-              <button type="submit">Confirmar</button>
-            </Col>
-          </Row>
-        </form>
-      </div>
-      {users.length > 0 ? (
+              <Row className="justify-content-center">
+                <Input
+                  label="Login"
+                  id="login"
+                  type="text"
+                  name="login"
+                  value={username}
+                  onChange={e => setUsername(e.target.value)}
+                />
+              </Row>
+              <Row className="justify-content-center">
+                <Input
+                  label="Senha"
+                  id="password"
+                  type="password"
+                  name="password"
+                  value={password}
+                  onChange={e => setPassword(e.target.value)}
+                />
+              </Row>
+              <Button type="submit" label="Confirmar" />
+            </form>
+          </div>
+        </Col>
+        {users.length > 0 ? (
           <Col className="col-lg-6">
-            <Table className="table table-striped text-nowrap ">
+            <Table className="table table-striped text-nowrap table-borderless table-hover">
               <thead>
-                <tr>
+                <tr className="table-header">
                   <th>#</th>
                   <th>Nome</th>
                   <th>Login</th>
                 </tr>
               </thead>
               <tbody>
-                {users.map((user, index) => (
-                  <tr
-                    key={index}
-                    className="table-info"
-                    onDoubleClick={() => handleRedirect(user._id)}
-                  >
-                    <th scope="row">{index + 1}</th>
-                    <td>{user.name}</td>
-                    <td>{user.username}</td>
-                  </tr>
-                ))}
+              {users.map((user, index) => (
+                <tr
+                  key={index}
+                  className="table-content"
+                  onDoubleClick={() => handleRedirect(user._id)}
+                >
+                  <th scope="row">{index + 1}</th>
+                  <td>{user.name}</td>
+                  <td>{user.username}</td>
+                </tr>
+              ))}
               </tbody>
             </Table>
           </Col>
-      ) : (
-        <div className="empty"></div>
-      )}
+        ) : (
+        <div>
+
+        </div>  
+        )}
       </Row>
     </React.Fragment>
   );
