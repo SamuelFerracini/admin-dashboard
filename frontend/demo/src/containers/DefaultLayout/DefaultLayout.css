@@ -1,0 +1,22 @@
+.button-logout {
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    background: rgb(0, 81, 131);
+    border: 0;
+    padding: 5px;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-size: 12px;
+    width: 80px;
+    height: 30px;
+    margin-right: 10px;
+    border-radius: 5px;
+  }
+  .button-logout:hover{
+    background: rgb(0, 106, 172);
+  }
+
+  .cui-account-logout{
+    font-size: 25px;
+    margin-right: 10px;
+  }

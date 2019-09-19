@@ -1,0 +1,14 @@
+import React, { Component } from 'react';
+
+export default class ErrorPage extends Component {
+
+  render() {
+    return (
+      <div className="animated fadeIn">
+        ErrorPage
+      </div>
+    )
+  }
+}
+
+
